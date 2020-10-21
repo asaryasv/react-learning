@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class Ideation extends Component {
+  constructor(){
+    super();
+    this.state ={
+      modVotes:0,
+      offVotes:0
+    }
+  }
+  increaseVotes =(stateVariable )=>{
+    if(stateVariable === 'modVotes')
+    this.setState({modVotes: this.state[stateVariable]+1})
+  else
+    this.setState({offVotes: this.state[stateVariable]+1})
+  }
+
+   decreaseVotes =(stateVariable)=>{
+    if(this.state[stateVariable]>0) {
+    if(stateVariable === 'modVotes')
+    this.setState({modVotes: this.state[stateVariable]-1})
+  else 
+    
+    this.setState({offVotes: this.state[stateVariable]-1})
+  
+  }
 }
 
-export default App;
+
+
+  render() {
+    return <ul>
+<li>
+<span>ModernOffice</span> - <span>votes: {this.state.modVotes}</span><button onClick={()=> {this.increaseVotes('modVotes')}}>+</button> <button onClick={()=> {this.decreaseVotes('modVotes')}}>-</button>
+</li>
+<li>
+<span>Offsite</span> - <span>votes: {this.state.offVotes}</span><button onClick={()=> {this.increaseVotes('offVotes')}}>+</button> <button onClick={()=> {this.decreaseVotes('offVotes')}}>-</button>
+</li>
+</ul>
+  }
+}
+
+
+
+
+export default Ideation;
